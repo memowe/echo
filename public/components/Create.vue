@@ -34,8 +34,8 @@ module.exports = {
     padding: .3em;
     max-height: 33%;
 }
-@media (max-width: 60rem) { #create > textarea { max-height: 50% }}
-@media (max-width: 30rem) { #create > textarea { max-height: 66% }}
+@media (max-width: 60rem) { #create > textarea { max-height: 50% !important }}
+@media (max-width: 30rem) { #create > textarea { max-height: 66% !important }}
 
 #create > textarea:focus {
     background: #f8f8f8;

@@ -40,8 +40,8 @@ module.exports = {
 }
 @media (max-width: 60rem) {
     #show > #markdown {
-        margin: 1em 0;
-        padding: 0 1em;
+        margin: 1em 0 !important;
+        padding: 0 1em !important;
     }
 }
 </style>

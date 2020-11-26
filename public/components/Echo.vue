@@ -59,5 +59,5 @@ html, body {margin: 0; padding: 0}
     width: calc(25% + 20rem);
     margin: 0 auto;
 }
-@media (max-width: 30rem) { #echo {width: 90%} }
+@media (max-width: 30rem) { #echo {width: 90% !important} }
 </style>
