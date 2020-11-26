@@ -24,7 +24,9 @@ main {
     overflow-y: auto;
     margin: 3em 0;
     padding: .5em 2em;
+    line-height: 1.5em;
     font-size: 1.2rem;
+    font-family: sans-serif;
 }
 @media (max-width: 60rem) { #content > #markdown { margin: 1em 0; padding: 0 1em }}
 
