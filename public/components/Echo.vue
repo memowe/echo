@@ -1,6 +1,6 @@
 <template>
     <div id="echo">
-        <router-view :md="md" @update="update" @create="create"/>
+        <router-view :md="md" @update="update"/>
     </div>
 </template>
 
@@ -36,11 +36,6 @@ module.exports = {
         update(md) {
             this.md = md;
             this.goto('Edit');
-        },
-
-        // "Create" a content page
-        create() {
-            this.goto('Show');
         },
     },
     created() {this.sync()},

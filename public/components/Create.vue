@@ -1,7 +1,11 @@
 <template>
     <div id="create">
         <textarea v-model="form" @change="update"></textarea>
-        <button @click="create">Create content!</button>
+        <div id="buttons">
+            <router-link :to="{name: 'Show'}" title="Show">
+                <i class="fas fa-external-link-alt"></i>
+            </router-link>
+        </div>
     </div>
 </template>
 
@@ -12,7 +16,6 @@ module.exports = {
     data: () => ({form: ''}),
     methods: {
         update() {this.$emit('update', this.form)},
-        create() {this.$emit('create')},
     },
     created() {this.form = this.md}
 }
@@ -24,13 +27,14 @@ module.exports = {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: center
 }
 
 #create > textarea {
     flex: 1 0;
     width: 100%;
     background: #f0f0f0;
+    margin-bottom: 1em;
     padding: .3em;
     max-height: 33%;
 }
@@ -41,11 +45,18 @@ module.exports = {
     background: #f8f8f8;
 }
 
-#create > button {
+#create > #buttons {
     flex: 0 0;
-    width: 100%;
-    max-width: 20rem;
-    margin: 1em 0;
-    padding: .5em;
+    margin-bottom: 3em
+}
+@media (max-width: 60rem) { #create > #buttons {margin-bottom: 1em !important} }
+
+#create > #buttons > a {
+    color: darkgray;
+    text-decoration: none;
+}
+#create > #buttons > a:hover,
+#create > #buttons > a:active {
+    color: black;
 }
 </style>
