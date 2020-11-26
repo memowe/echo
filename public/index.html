@@ -4,41 +4,15 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0">
         <title>echo</title>
-        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script><!-- debug version -->
+        <script src="https://cdn.jsdelivr.net/npm/vue-router"></script>
+        <script src="https://cdn.jsdelivr.net/npm/http-vue-loader"></script>
         <script src="https://cdn.jsdelivr.net/npm/showdown"></script>
-        <link rel="stylesheet" href="style/overall.css">
+        <script defer src="echo.js"></script>
     </head>
     <body>
         <main>
-            <div v-if="has" id="content">
-                <div id="markdown" v-html="html"></div>
-            </div>
-            <div v-else id="create">
-                <textarea v-model="mdForm"></textarea>
-                <button @click="create()">Create content!</button>
-            </div>
+            <Echo></Echo>
         </main>
-        <script>
-
-            new Vue({
-                el: 'main',
-                data: {md: '', mdForm: ''},
-                computed: {
-                    has()   {return this.md != ''},
-                    html()  {return (new showdown.Converter()).makeHtml(this.md)},
-                },
-                methods: {
-                    encode(md)  {return btoa(md)},
-                    decode(enc) {return atob(enc)},
-                    read()      {this.md = this.decode(window.location.hash.substr(1))},
-                    create()    {window.location.hash = this.encode(this.mdForm)},
-                },
-                created: function() {
-                    this.read();
-                    window.addEventListener('hashchange', this.read);
-                }
-            })
-
-        </script>
     </body>
 </html>
