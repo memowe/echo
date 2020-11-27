@@ -11,8 +11,8 @@ module.exports = {
     methods: {
         
         // En- and decoding the markdown content
-        encode: md => md,
-        decode: enc => enc,
+        encode: md => btoa(md),
+        decode: enc => atob(typeof enc === 'string' ? enc : ''),
 
         // Read markdown content from URL
         read() {
