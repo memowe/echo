@@ -1,6 +1,6 @@
 <template>
     <div id="create">
-        <textarea v-model="form" @change="update"></textarea>
+        <textarea v-model="form" @keyup="update"></textarea>
         <div id="buttons">
             <router-link :to="{name: 'Show'}" title="Show">
                 <i class="fas fa-external-link-alt"></i>
