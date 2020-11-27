@@ -29,7 +29,11 @@ module.exports = {
         goto(name) {
             router.push({name: name, params: {
                 code: this.encode(this.md),
-            }});
+            }}).catch(e => {
+                if (e.name !== 'NavigationDuplicated') {
+                    throw e;
+                }
+            });
         },
 
         // Update markdown from child component event
