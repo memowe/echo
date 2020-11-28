@@ -34,12 +34,12 @@ module.exports = {
     flex: 1 0;
     width: 100%;
     background: #f0f0f0;
-    margin-bottom: 1em;
+    margin: 1em 0;
     padding: .3em;
     max-height: 33%;
 }
 @media (max-width: 60rem) { #edit > textarea { max-height: 50% !important }}
-@media (max-width: 30rem) { #edit > textarea { max-height: 66% !important }}
+@media (max-width: 30rem) { #edit > textarea { max-height: none !important }}
 
 #edit > textarea:focus {
     background: #f8f8f8;
