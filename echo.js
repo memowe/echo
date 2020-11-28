@@ -1,10 +1,9 @@
 Vue.use(VueRouter)
 
 const router = new VueRouter({routes: [
-    {path: '/create',       name: 'Create', component: httpVueLoader('components/Create.vue')},
-    {path: '/create/:code', name: 'Edit',   component: httpVueLoader('components/Create.vue')},
+    {path: '/edit/:code',   name: 'Edit',   component: httpVueLoader('components/Edit.vue')},
     {path: '/show/:code',   name: 'Show',   component: httpVueLoader('components/Show.vue')},
-    {path: '*', redirect: '/create'},
+    {path: '*', redirect: '/edit/eJwLL8osSVXISC1KVdDT0wMAJdAEeg=='},
 ]})
 
 new Vue({

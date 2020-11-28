@@ -1,5 +1,5 @@
 <template>
-    <div id="create">
+    <div id="edit">
         <textarea v-model="form" @keyup="update"></textarea>
         <div id="buttons">
             <router-link :to="{name: 'Show'}" title="Show">
@@ -11,7 +11,7 @@
 
 <script>
 module.exports = {
-    name: 'Create',
+    name: 'Edit',
     props: {md: ''},
     data: () => ({form: ''}),
     methods: {
@@ -22,7 +22,7 @@ module.exports = {
 </script>
 
 <style scoped>
-#create {
+#edit {
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -30,7 +30,7 @@ module.exports = {
     align-items: center
 }
 
-#create > textarea {
+#edit > textarea {
     flex: 1 0;
     width: 100%;
     background: #f0f0f0;
@@ -38,25 +38,25 @@ module.exports = {
     padding: .3em;
     max-height: 33%;
 }
-@media (max-width: 60rem) { #create > textarea { max-height: 50% !important }}
-@media (max-width: 30rem) { #create > textarea { max-height: 66% !important }}
+@media (max-width: 60rem) { #edit > textarea { max-height: 50% !important }}
+@media (max-width: 30rem) { #edit > textarea { max-height: 66% !important }}
 
-#create > textarea:focus {
+#edit > textarea:focus {
     background: #f8f8f8;
 }
 
-#create > #buttons {
+#edit > #buttons {
     flex: 0 0;
     margin-bottom: 3em
 }
-@media (max-width: 60rem) { #create > #buttons {margin-bottom: 1em !important} }
+@media (max-width: 60rem) { #edit > #buttons {margin-bottom: 1em !important} }
 
-#create > #buttons > a {
+#edit > #buttons > a {
     color: darkgray;
     text-decoration: none;
 }
-#create > #buttons > a:hover,
-#create > #buttons > a:active {
+#edit > #buttons > a:hover,
+#edit > #buttons > a:active {
     color: black;
 }
 </style>
