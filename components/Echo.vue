@@ -10,9 +10,26 @@ module.exports = {
     data: () => ({md: ''}),
     methods: {
         
-        // En- and decoding the markdown content
-        encode: md => btoa(md),
-        decode: enc => atob(typeof enc === 'string' ? enc : ''),
+        // Zip and base64-encode markdown string
+        encode(md) {
+            const charCodes = new TextEncoder().encode(md);
+            const zipped    = pako.deflate(new Uint8Array(charCodes));
+            const binString = String.fromCharCode(...zipped);
+            return btoa(binString);
+        },
+
+        // Decode zipped and base64'ed markdown string
+        decode(base64) {
+            try {
+                const binString = atob(base64);
+                const zipped    = binString.split('').map(b => b.charCodeAt(0));
+                const charCodes = pako.inflate(zipped);
+                return new TextDecoder().decode(charCodes);
+            } catch (e) {
+                console.log(`Couldn't decode '${base64}'`);
+                router.push('/'); // "Reboot"
+            }
+        },
 
         // Read markdown content from URL
         read() {
