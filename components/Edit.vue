@@ -5,6 +5,7 @@
             <router-link :to="{name: 'Show'}" title="Show">
                 <i class="fas fa-eye"></i>
             </router-link>
+            <i @click="share" class="fas fa-share-alt" title="Share"></i>
         </div>
         <div v-if="modal" @click="modal = false" id="modal">
             <div id="sharing-options">
@@ -21,6 +22,7 @@ module.exports = {
     data: () => ({form: '', modal: false}),
     methods: {
         update() {this.$emit('update', this.form)},
+        share() {this.modal = true},
     },
     created() {this.form = this.md}
 }
@@ -56,12 +58,14 @@ module.exports = {
 }
 @media (max-width: 60rem) { #edit > #buttons {margin-bottom: 1em !important} }
 
-#edit > #buttons > a {
+#edit > #buttons > * {
     color: darkgray;
     text-decoration: none;
+    margin: 0 .5em;
+    cursor: pointer;
 }
-#edit > #buttons > a:hover,
-#edit > #buttons > a:active {
+#edit > #buttons > *:hover,
+#edit > #buttons > *:active {
     color: black;
 }
 
