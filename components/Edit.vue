@@ -3,7 +3,7 @@
         <textarea v-model="form" @keyup="update"></textarea>
         <div id="buttons">
             <router-link :to="{name: 'Show'}" title="Show">
-                <i class="fas fa-external-link-alt"></i>
+                <i class="fas fa-eye"></i>
             </router-link>
         </div>
     </div>
