@@ -6,6 +6,11 @@
                 <i class="fas fa-eye"></i>
             </router-link>
         </div>
+        <div v-if="modal" @click="modal = false" id="modal">
+            <div id="sharing-options">
+                Hello world!
+            </div>
+        </div>
     </div>
 </template>
 
@@ -13,7 +18,7 @@
 module.exports = {
     name: 'Edit',
     props: {md: ''},
-    data: () => ({form: ''}),
+    data: () => ({form: '', modal: false}),
     methods: {
         update() {this.$emit('update', this.form)},
     },
@@ -58,5 +63,25 @@ module.exports = {
 #edit > #buttons > a:hover,
 #edit > #buttons > a:active {
     color: black;
+}
+
+#modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0,0,0,0.4);
+}
+
+#modal > * {
+    flex: 0 0 content;
+    background-color: white;
+    box-shadow: 0 .2em .5em black;
+    padding: 1em;
 }
 </style>
