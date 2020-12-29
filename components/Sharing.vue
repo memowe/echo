@@ -1,11 +1,19 @@
 <template>
     <div id="sharing-options">
-        <div @click="shareClipboard" class="sharing-option">
+        <div v-if="!success" @click="shareClipboard" class="sharing-option">
             <div class="sharing-button">
                 <i class="fas fa-share-alt"></i>
             </div>
             <div class="sharing-label">
                 Copy to Clipboard
+            </div>
+        </div>
+        <div v-else @click="done" class="sharing-option">
+            <div class="sharing-button sharing-success">
+                <i class="fas fa-check"></i>
+            </div>
+            <div class="sharing-label sharing-success">
+                Success!
             </div>
         </div>
     </div>
@@ -14,6 +22,7 @@
 <script>
 module.exports = {
     name: 'Sharing',
+    data: () => ({success: false}),
     computed: {
         url() {
             let code = this.$route.params.code
@@ -24,6 +33,9 @@ module.exports = {
     methods: {
         async shareClipboard() {
             await this.$copyText(this.url)
+            this.success = true
+        },
+        done() {
             this.$emit('done')
         }
     }
@@ -55,5 +67,9 @@ module.exports = {
 
 .sharing-label {
     text-align: center;
+}
+
+.sharing-success {
+    color: green;
 }
 </style>
