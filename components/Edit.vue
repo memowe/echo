@@ -3,8 +3,12 @@
         <textarea v-model="form" @keyup="update"></textarea>
         <div id="buttons">
             <router-link :to="{name: 'Show'}" title="Show">
-                <i class="fas fa-external-link-alt"></i>
+                <i class="fas fa-eye"></i>
             </router-link>
+            <i @click="share" class="fas fa-share-alt" title="Share"></i>
+        </div>
+        <div v-if="modal" @click.self="close" id="modal">
+            <Sharing @done="close"/>
         </div>
     </div>
 </template>
@@ -13,11 +17,14 @@
 module.exports = {
     name: 'Edit',
     props: {md: ''},
-    data: () => ({form: ''}),
+    data: () => ({form: '', modal: false}),
     methods: {
         update() {this.$emit('update', this.form)},
+        share() {this.modal = true},
+        close() {this.modal = false},
     },
-    created() {this.form = this.md}
+    created() {this.form = this.md},
+    components: {Sharing: httpVueLoader('components/Sharing.vue')},
 }
 </script>
 
@@ -51,12 +58,34 @@ module.exports = {
 }
 @media (max-width: 60rem) { #edit > #buttons {margin-bottom: 1em !important} }
 
-#edit > #buttons > a {
+#edit > #buttons > * {
     color: darkgray;
     text-decoration: none;
+    margin: 0 .5em;
+    cursor: pointer;
 }
-#edit > #buttons > a:hover,
-#edit > #buttons > a:active {
+#edit > #buttons > *:hover,
+#edit > #buttons > *:active {
     color: black;
+}
+
+#modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0,0,0,0.4);
+}
+
+#modal > * {
+    flex: 0 0 content;
+    background-color: white;
+    box-shadow: 0 .2em .5em black;
+    padding: 1em;
 }
 </style>
