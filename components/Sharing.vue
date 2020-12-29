@@ -14,6 +14,13 @@
 <script>
 module.exports = {
     name: 'Sharing',
+    computed: {
+        url() {
+            let code = this.$route.params.code
+            let reso = this.$router.resolve({name: 'Show', params: {code: code}})
+            return new URL(reso.href, window.location)
+        }
+    },
     methods: {
         shareClipboard() {
             // TODO
