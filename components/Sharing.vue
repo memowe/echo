@@ -1,6 +1,6 @@
 <template>
     <div id="sharing-options">
-        <div v-if="!success" @click="shareClipboard" class="sharing-option">
+        <div v-if="mode == 'start'" @click="shareClipboard" class="sharing-option">
             <div class="sharing-button">
                 <i class="fas fa-share-alt"></i>
             </div>
@@ -8,7 +8,7 @@
                 Copy to Clipboard
             </div>
         </div>
-        <div v-else @click="done" class="sharing-option">
+        <div v-if="mode == 'success'" @click="done" class="sharing-option">
             <div class="sharing-button sharing-success">
                 <i class="fas fa-check"></i>
             </div>
@@ -22,7 +22,7 @@
 <script>
 module.exports = {
     name: 'Sharing',
-    data: () => ({success: false}),
+    data: () => ({mode: 'start'}),
     computed: {
         url() {
             let code = this.$route.params.code
@@ -33,7 +33,7 @@ module.exports = {
     methods: {
         async shareClipboard() {
             await this.$copyText(this.url)
-            this.success = true
+            this.mode = 'success'
         },
         done() {
             this.$emit('done')
