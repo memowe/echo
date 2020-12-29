@@ -7,8 +7,8 @@
             </router-link>
             <i @click="share" class="fas fa-share-alt" title="Share"></i>
         </div>
-        <div v-if="modal" @click.self="modal = false" id="modal">
-            <Sharing/>
+        <div v-if="modal" @click.self="close" id="modal">
+            <Sharing @done="close"/>
         </div>
     </div>
 </template>
@@ -21,6 +21,7 @@ module.exports = {
     methods: {
         update() {this.$emit('update', this.form)},
         share() {this.modal = true},
+        close() {this.modal = false},
     },
     created() {this.form = this.md},
     components: {Sharing: httpVueLoader('components/Sharing.vue')},

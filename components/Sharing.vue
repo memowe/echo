@@ -22,8 +22,9 @@ module.exports = {
         }
     },
     methods: {
-        shareClipboard() {
-            this.$copyText(this.url)
+        async shareClipboard() {
+            await this.$copyText(this.url)
+            this.$emit('done')
         }
     }
 }
