@@ -23,8 +23,7 @@ module.exports = {
     },
     methods: {
         shareClipboard() {
-            // TODO
-            console.log('shareClipboard')
+            this.$copyText(this.url)
         }
     }
 }
