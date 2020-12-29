@@ -8,6 +8,17 @@
                 Copy to Clipboard
             </div>
         </div>
+        <div v-if="mode == 'start'" @click="displayQR" class="sharing-option">
+            <div class="sharing-button">
+                <i class="fas fa-qrcode"></i>
+            </div>
+            <div class="sharing-label">
+                Show QR code
+            </div>
+        </div>
+        <div v-if="mode == 'qr'" @click="done" class="sharing-option">
+            TODO
+        </div>
         <div v-if="mode == 'success'" @click="done" class="sharing-option">
             <div class="sharing-button sharing-success">
                 <i class="fas fa-check"></i>
@@ -34,6 +45,9 @@ module.exports = {
         async shareClipboard() {
             await this.$copyText(this.url)
             this.mode = 'success'
+        },
+        displayQR() {
+            this.mode = 'qr'
         },
         done() {
             this.$emit('done')
