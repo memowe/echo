@@ -8,7 +8,7 @@
                 Copy to Clipboard
             </div>
         </div>
-        <div v-if="mode == 'start'" @click="displayQR" class="sharing-option">
+        <div v-if="mode == 'start'" @click="mode = 'qr'" class="sharing-option">
             <div class="sharing-button">
                 <i class="fas fa-qrcode"></i>
             </div>
@@ -16,8 +16,8 @@
                 Show QR code
             </div>
         </div>
-        <div v-if="mode == 'qr'" @click="done" class="sharing-option">
-            TODO
+        <div v-if="mode == 'qr'" @click="done" class="sharing-option sharing-qr">
+            <qrcode-vue :value="url" size="250"/>
         </div>
         <div v-if="mode == 'success'" @click="done" class="sharing-option">
             <div class="sharing-button sharing-success">
@@ -38,7 +38,7 @@ module.exports = {
         url() {
             let code = this.$route.params.code
             let reso = this.$router.resolve({name: 'Show', params: {code: code}})
-            return new URL(reso.href, window.location)
+            return new URL(reso.href, window.location).toString()
         }
     },
     methods: {
@@ -46,13 +46,13 @@ module.exports = {
             await this.$copyText(this.url)
             this.mode = 'success'
         },
-        displayQR() {
-            this.mode = 'qr'
-        },
         done() {
             this.$emit('done')
         }
-    }
+    },
+    components: {
+        QrcodeVue: QrcodeVue,
+    },
 }
 </script>
 
@@ -85,5 +85,10 @@ module.exports = {
 
 .sharing-success {
     color: green;
+}
+
+.sharing-qr {
+    min-width: 250px;
+    min-height: 250px;
 }
 </style>
