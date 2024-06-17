@@ -13,9 +13,4 @@
  </g>
 </svg>
 
-It has proudly been  
-<strong id="days">foo</strong><br>
-days since the last incident.
-
-<script type="text/javascript"> document.getElementById('days').innerHTML = 28167487156 + Math.ceil((new Date().getTime() - new Date("2/3/2017").getTime()) / (1000*60*60*24));
-</script>
+It has proudly been **28167487156** days since the last incident.
